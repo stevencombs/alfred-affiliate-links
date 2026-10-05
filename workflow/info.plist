@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.retrocombs.affiliate-links</string>
+	<key>category</key>
+	<string>Internet</string>
+	<key>connections</key>
+	<dict>
+		<key>D4707D86-7F81-4049-8CB9-CA3B807DBBF4</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>C91D60FD-9BAB-4130-8395-8DF2E73CE6F1</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>C91D60FD-9BAB-4130-8395-8DF2E73CE6F1</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>06BC8CBC-DFFD-4B5C-A6E2-681E16C32AD0</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>retroCombs</string>
+	<key>description</key>
+	<string>Search Affiliate Links.txt and copy a link. Keyword: aff</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Affiliate Links</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>aff</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>1</integer>
+				<key>queuemode</key>
+				<integer>2</integer>
+				<key>runningsubtext</key>
+				<string>Searching affiliate links…</string>
+				<key>script</key>
+				<string>/usr/bin/python3 ./search.py "$@"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Search links, then copy a URL</string>
+				<key>title</key>
+				<string>Affiliate Links</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>D4707D86-7F81-4049-8CB9-CA3B807DBBF4</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>C91D60FD-9BAB-4130-8395-8DF2E73CE6F1</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>Copied to clipboard</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>06BC8CBC-DFFD-4B5C-A6E2-681E16C32AD0</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>Type aff, then part of a product, brand, section, promo, or URL.
+
+Return copies the link.
+⌘Return copies the YouTube paste line (emoji, name, and URL, with the UK link when the entry has one).
+⌥Return copies the UK link when there is one.
+⌃Return copies the promo note when there is one.
+
+Alt URLs and UK links are their own rows, so Return copies that exact link.
+Lines under Notes to Clean Later show up when they match, and they are not copied.
+
+The links file is workflow configuration "Links file". It defaults to the Google Drive copy so every synced Mac reads the same list.
+
+Source: https://github.com/stevencombs/alfred-affiliate-links</string>
+	<key>uidata</key>
+	<dict>
+		<key>D4707D86-7F81-4049-8CB9-CA3B807DBBF4</key>
+		<dict>
+			<key>xpos</key>
+			<real>80</real>
+			<key>ypos</key>
+			<real>80</real>
+		</dict>
+		<key>C91D60FD-9BAB-4130-8395-8DF2E73CE6F1</key>
+		<dict>
+			<key>xpos</key>
+			<real>320</real>
+			<key>ypos</key>
+			<real>80</real>
+		</dict>
+		<key>06BC8CBC-DFFD-4B5C-A6E2-681E16C32AD0</key>
+		<dict>
+			<key>xpos</key>
+			<real>560</real>
+			<key>ypos</key>
+			<real>80</real>
+		</dict>
+	</dict>
+	<key>userconfigurationconfig</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string>~/Google Drive (Home)/Grok Ops/YouTube/Affiliate Links.txt</string>
+				<key>placeholder</key>
+				<string></string>
+				<key>required</key>
+				<true/>
+				<key>trim</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string>Path to Affiliate Links.txt. A leading ~ is expanded. The same Google Drive path is used on every Mac.</string>
+			<key>label</key>
+			<string>Links file</string>
+			<key>type</key>
+			<string>textfield</string>
+			<key>variable</key>
+			<string>links_file</string>
+		</dict>
+	</array>
+	<key>variablesdontexport</key>
+	<array/>
+	<key>version</key>
+	<string>1.0.0</string>
+	<key>webaddress</key>
+	<string>https://github.com/stevencombs/alfred-affiliate-links</string>
+</dict>
+</plist>
