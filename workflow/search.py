@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Alfred Script Filter for Affiliate Links.txt.
 
-Return copies the URL. Command-Return copies the YouTube paste line
-(emoji, name, and URL, including a UK link when the entry has one).
-Option-Return copies the UK URL. Control-Return copies a promo note.
+Return copies the whole product line: emoji, name, and link.
+Command-Return copies the URL alone.
+Option-Return copies the UK line when the entry has one.
+Control-Return copies a promo note.
 """
 
 import json
@@ -182,24 +183,24 @@ def item(
         "uid": uid,
         "title": title,
         "subtitle": subtitle,
-        "arg": url,
+        "arg": paste_line,
         "valid": True,
-        "text": {"copy": url, "largetype": paste_line},
+        "text": {"copy": paste_line, "largetype": paste_line},
         "quicklookurl": url,
         "mods": {
             "cmd": {
                 "valid": True,
-                "arg": paste_line,
-                "subtitle": "Copy paste line · " + paste_line,
+                "arg": url,
+                "subtitle": "Copy URL only · " + url,
             }
         },
     }
     if region is not None:
-        name, region_url = region
+        name, region_line = region
         result["mods"]["alt"] = {
             "valid": True,
-            "arg": region_url,
-            "subtitle": "Copy " + name + " link · " + region_url,
+            "arg": region_line,
+            "subtitle": "Copy " + name + " line · " + region_line,
         }
     if promo_arg:
         result["mods"]["ctrl"] = {
@@ -233,9 +234,15 @@ def build_items(products, notes, query):
         score = rank(name, tokens, strength) if tokens else (0,)
         promo_arg = "\n".join(product["promos"])
         first_region = product["regions"][0] if product["regions"] else None
-        hints = ["⌘ paste line"]
+        region_copy = None
         if first_region is not None:
-            hints.append("⌥ " + first_region[0])
+            region_copy = (
+                first_region[0],
+                "{0}: {1}".format(product["label"], first_region[1]),
+            )
+        hints = ["⌘ URL only"]
+        if region_copy is not None:
+            hints.append("⌥ " + region_copy[0])
         if promo_arg:
             hints.append("⌃ promo")
 
@@ -257,7 +264,7 @@ def build_items(products, notes, query):
                     paste_line=product["line"],
                     uid="aff:{0}:{1}:primary".format(product["index"], product["primary"]),
                     promo_arg=promo_arg,
-                    region=first_region,
+                    region=region_copy,
                 ),
             )
         )
@@ -274,12 +281,12 @@ def build_items(products, notes, query):
                         subtitle=subtitle_for(
                             region_url,
                             product["section"],
-                            [region_name, "⌘ paste line"]
+                            [region_name, "⌘ URL only"]
                             + (["⌃ promo"] if promo_arg else []),
                             product["promos"],
                             product["notes"],
                         ),
-                        paste_line=product["line"],
+                        paste_line="{0}: {1}".format(product["label"], region_url),
                         uid="aff:{0}:{1}:{2}".format(
                             product["index"], region_name, region_url
                         ),
@@ -301,7 +308,7 @@ def build_items(products, notes, query):
                         subtitle=subtitle_for(
                             alt_url,
                             product["section"],
-                            ["alt", "⌘ paste this alt"]
+                            ["alt", "⌘ URL only"]
                             + (["⌃ promo"] if promo_arg else []),
                             product["promos"],
                             product["notes"],

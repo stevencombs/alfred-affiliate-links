@@ -38,7 +38,7 @@
 	<key>createdby</key>
 	<string>retroCombs</string>
 	<key>description</key>
-	<string>Search Affiliate Links.txt and copy a link. Keyword: aff</string>
+	<string>Search Affiliate Links.txt and copy the product line. Keyword: aff</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
@@ -79,7 +79,7 @@
 				<key>scriptfile</key>
 				<string></string>
 				<key>subtext</key>
-				<string>Search links, then copy a URL</string>
+				<string>Search, then copy the product line</string>
 				<key>title</key>
 				<string>Affiliate Links</string>
 				<key>type</key>
@@ -138,12 +138,12 @@
 	<key>readme</key>
 	<string>Type aff, then part of a product, brand, section, promo, or URL.
 
-Return copies the link.
-⌘Return copies the YouTube paste line (emoji, name, and URL, with the UK link when the entry has one).
-⌥Return copies the UK link when there is one.
+Return copies the whole line: emoji, product name, and link.
+⌘Return copies the URL alone.
+⌥Return copies the UK line (emoji, name, and UK link) when there is one.
 ⌃Return copies the promo note when there is one.
 
-Alt URLs and UK links are their own rows, so Return copies that exact link.
+Alt URLs and UK links are their own rows. Return on those rows copies emoji, name, and that row's link.
 Lines under Notes to Clean Later show up when they match, and they are not copied.
 
 The links file is workflow configuration "Links file". It defaults to the Google Drive copy so every synced Mac reads the same list.
@@ -200,7 +200,7 @@ Source: https://github.com/stevencombs/alfred-affiliate-links</string>
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>1.0.0</string>
+	<string>1.1.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/stevencombs/alfred-affiliate-links</string>
 </dict>

@@ -1,15 +1,15 @@
 # Affiliate Links for Alfred
 
-Search [Affiliate Links.txt](#the-links-file) from Alfred and copy the link you want.
+Search [Affiliate Links.txt](#the-links-file) from Alfred and copy the product line you want.
 
-The keyword is `aff`. Return puts the URL on the clipboard. A notification confirms the copy. The workflow reads a text file on disk. It does not send that file, or the link you copy, anywhere.
+The keyword is `aff`. Return puts the whole line on the clipboard: emoji, product name, and link. A notification confirms the copy. The workflow reads a text file on disk. It does not send that file, or the line you copy, anywhere.
 
 | | |
 |---|---|
 | Keyword | `aff` |
 | Bundle ID | `com.retrocombs.affiliate-links` |
 | Alfred | 5, with the Powerpack |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Source | https://github.com/stevencombs/alfred-affiliate-links |
 
 On the Macs that already sync Alfred preferences through Google Drive, the workflow is already installed. This repository is the source copy: the script, the Alfred package, and these instructions.
@@ -37,16 +37,16 @@ Select a row, then use one of these keys.
 
 | Key | Copies |
 |---|---|
-| Return | The URL for that row |
-| ⌘Return | The YouTube paste line: emoji, name, and URL. When the entry has a UK link, that full line is copied, UK URL included |
-| ⌥Return | The UK URL, on a row that has one |
+| Return | The whole line: emoji, product name, and link. A UK link that is part of that line is included |
+| ⌘Return | The URL alone |
+| ⌥Return | The UK line, emoji and name included, on a row that has one |
 | ⌃Return | The promo note, on a row that has one |
 
-⌘C copies the URL as well. That is Alfred's copy shortcut, and it uses the same URL as Return.
+⌘C copies the same whole line as Return.
 
-The workflow copies to the clipboard. It does not type the link into the frontmost app. Paste with ⌘V.
+The workflow copies to the clipboard. It does not type into the frontmost app. Paste with ⌘V.
 
-UK links and alternate URLs are their own rows. Return on a `(UK)` row copies the UK URL. Return on an `(alt)` row copies that alternate URL. ⌘Return on an alt row copies `emoji Name: <that alt URL>`. ⌘Return on the main row and the UK row copies the original line from the file, which is the canonical paste line.
+UK links and alternate URLs are their own rows. Return on a `(UK)` row copies `emoji Name: UK link`. Return on an `(alt)` row copies `emoji Name: that alt link`. ⌘Return on any of those rows copies the URL alone.
 
 A row titled like a sentence, with the subtitle `Note · … · no link to copy`, is a note from the file. Return does nothing on that row.
 
@@ -150,11 +150,11 @@ The subtitle under each product shows the URL, the section, and which modifier k
 
 | Hint in the subtitle | Meaning |
 |---|---|
-| `⌘ paste line` | ⌘Return copies the paste line |
-| `⌥ UK` | ⌥Return copies the UK URL |
+| `⌘ URL only` | ⌘Return copies the URL alone |
+| `⌥ UK` | ⌥Return copies the UK line, emoji and name included |
 | `⌃ promo` | ⌃Return copies the promo note |
-| `UK` on a `(UK)` row | Return copies the UK URL |
-| `alt` on an `(alt)` row | Return copies that alternate URL |
+| `UK` on a `(UK)` row | Return copies `emoji Name: UK link` |
+| `alt` on an `(alt)` row | Return copies `emoji Name: that alt link` |
 
 Hold the modifier before you press Return. The subtitle changes to the exact text that will be copied.
 
@@ -180,7 +180,7 @@ A line that starts with `#` is a section name. The name is shown in the subtitle
 EMOJI Product Name: https://example.com/product
 ```
 
-The label is everything before the colon that introduces the URL. The first URL is the link Return copies. The whole line is the paste line ⌘Return copies.
+The label is everything before the colon that introduces the URL. Return copies this whole line. ⌘Return copies the URL alone.
 
 ### UK, or another region
 
@@ -188,7 +188,7 @@ The label is everything before the colon that introduces the URL. The first URL 
 ⚡ Example Hub: https://example.com/us | UK: https://example.com/uk
 ```
 
-Return on the main row copies the first URL. ⌥Return on that row copies the UK URL. A second row, `Example Hub (UK)`, copies the UK URL on Return. ⌘Return on either row copies the whole original line, which is the paste format `US URL | UK: URL` with the emoji and name in front.
+Return on the main row copies that whole line, UK link included. ⌥Return copies `emoji Example Hub: UK link`. A second row, `Example Hub (UK)`, copies that same UK line on Return. ⌘Return on either row copies the URL alone.
 
 A region label is a short word, then a colon, then a URL, in the part after `|`. `UK` is the usual label. Another short label is treated the same way and gets its own row.
 
@@ -202,7 +202,7 @@ Indent the line with spaces or a tab, directly under the product, with no blank 
    Alts: https://example.com/third | https://example.com/fourth
 ```
 
-Each alternate URL is a row titled `Example Recorder (alt)`. The main row stays the first URL. The file's own rule is to use the first URL until you pick a canonical one. The alt rows are there when you want a different link on purpose.
+Each alternate URL is a row titled `Example Recorder (alt)`. Return on the main row copies the original line, which uses the first URL. Return on an alt row copies `emoji Example Recorder: that alt link`. The file's own rule is to use the first URL until you pick a canonical one.
 
 ### Promo and other notes
 
@@ -267,8 +267,8 @@ aff B08965JV8D
 
 | You type | You get |
 |---|---|
-| `aff elgato` | Each Elgato product. Return copies that product's URL. ⌘Return copies `emoji Elgato …: URL`. |
-| `aff sabrent` | The hub, then a `(UK)` row. Return on the first row copies the US URL. ⌥Return, or Return on the UK row, copies the UK URL. ⌘Return copies the full paste line with both URLs. |
+| `aff elgato` | Each Elgato product. Return copies `emoji Elgato …: URL`. ⌘Return copies the URL alone. |
+| `aff sabrent` | The hub, then a `(UK)` row. Return on the first row copies the whole line, UK link included. ⌥Return, or Return on the UK row, copies `emoji Name: UK link`. ⌘Return copies the URL alone. |
 | `aff gitryin` | The direct link and the Amazon color links. The direct row shows the promo. ⌃Return copies `Promo: save 10% with code retrocombs`. |
 | `aff rode` | The VideoMic row, typed without `ø`, plus the cleanup note that asks you to confirm the product. The note cannot be copied as a link. |
 | `aff wireless` | The wireless keyboard, plus the VideoMic cleanup note, because that note contains "Wireless". |
@@ -389,9 +389,9 @@ If `ls` fails, Google Drive has not mounted that folder, or the file is still on
 
 The product line needs a URL. A line with no `http` is skipped, unless it is a `#` section or a `- ` note. A promo or alt line only attaches when it is indented and there is no blank line between it and the product.
 
-**The wrong URL was copied.**
+**The wrong text was copied.**
 
-Return copies the row you highlighted. The main row is the first URL. A `(UK)` row is the region URL. An `(alt)` row is an alternate. ⌘Return copies the paste line, which is longer than the URL. The notification shows the exact clipboard text.
+Return copies the whole line for the row you highlighted. The main row is the original line from the file. A `(UK)` row is `emoji Name: UK link`. An `(alt)` row is `emoji Name: that alt link`. ⌘Return copies the URL alone. The notification shows the exact clipboard text.
 
 **The link was not pasted into the document.**
 
